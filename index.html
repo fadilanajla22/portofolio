@@ -1,497 +1,161 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Industrial Pastel</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;600;700;900&display=swap');
-        
-        * {
-            font-family: 'Barlow', sans-serif;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Industrial Portfolio — Profile</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Exo+2:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'industrial-bg': '#FDEDED',
+            'industrial-pink': '#F875AA',
+            'industrial-lime': '#EDF0AE',
+            'industrial-dark': '#2D2D2D',
+            'industrial-gray': '#555555',
+          },
+          fontFamily: {
+            orbitron: ['Orbitron', 'sans-serif'],
+            exo: ['Exo 2', 'sans-serif']
+          }
         }
-        
-        body {
-            background: #FDEDED;
-            overflow-x: hidden;
-        }
-        
-        .grid-pattern {
-            background-image: 
-                linear-gradient(rgba(248, 117, 170, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(248, 117, 170, 0.05) 1px, transparent 1px);
-            background-size: 50px 50px;
-        }
-        
-        .gradient-text {
-            background: linear-gradient(135deg, #F875AA 0%, #AEDEFC 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .glow-pink {
-            box-shadow: 0 0 30px rgba(248, 117, 170, 0.4);
-        }
-        
-        .glow-blue {
-            box-shadow: 0 0 30px rgba(174, 222, 252, 0.4);
-        }
-        
-        .project-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(248, 117, 170, 0.15), transparent);
-            transition: left 0.5s;
-        }
-        
-        .project-card:hover::before {
-            left: 100%;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(248, 117, 170, 0.3);
-        }
-        
-        .bolt {
-            width: 14px;
-            height: 14px;
-            background: linear-gradient(135deg, #F875AA, #AEDEFC);
-            border-radius: 50%;
-            position: relative;
-            box-shadow: 0 2px 8px rgba(248, 117, 170, 0.3);
-        }
-        
-        .bolt::before {
-            content: '';
-            position: absolute;
-            width: 6px;
-            height: 2px;
-            background: #FDEDED;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        
-        .bolt::after {
-            content: '';
-            position: absolute;
-            width: 2px;
-            height: 6px;
-            background: #FDEDED;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-        
-        .animate-slide {
-            animation: slideIn 0.8s ease-out;
-        }
-        
-        .animate-float {
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        .warning-stripe {
-            background: repeating-linear-gradient(
-                45deg,
-                #F875AA,
-                #F875AA 20px,
-                #AEDEFC 20px,
-                #AEDEFC 40px
-            );
-        }
-        
-        .metal-plate {
-            background: linear-gradient(135deg, #FDEDED 0%, #fff 50%, #FDEDED 100%);
-            border: 3px solid #F875AA;
-        }
-        
-        .nav-blur {
-            backdrop-filter: blur(10px);
-            background: rgba(253, 237, 237, 0.9);
-        }
-    </style>
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #FDEDED;
+      color: #2D2D2D;
+    }
+    .profile-border {
+      box-shadow: 0 0 0 4px #F875AA, 0 0 0 6px #2D2D2D;
+    }
+    .skill-bar {
+      height: 8px;
+      background-color: #E0E0E0;
+    }
+    .skill-fill {
+      height: 100%;
+      background-color: #F875AA;
+    }
+  </style>
 </head>
-<body class="text-gray-800">
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 nav-blur border-b-4 border-pink-400">
-        <div class="max-w-7xl mx-auto px-6 py-4">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-3">
-                    <div class="bolt"></div>
-                    <h1 class="text-2xl font-black gradient-text">INDUSTRIAL DESIGN</h1>
-                </div>
-                <div class="hidden md:flex space-x-8 text-sm font-bold tracking-wider">
-                    <a href="#home" class="hover:text-pink-500 transition">HOME</a>
-                    <a href="#projects" class="hover:text-pink-500 transition">PROJECTS</a>
-                    <a href="#about" class="hover:text-pink-500 transition">ABOUT</a>
-                    <a href="#contact" class="hover:text-pink-500 transition">CONTACT</a>
-                </div>
-                <button class="md:hidden text-pink-500">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 6h16M4 12h16m-16 6h16"></path>
-                    </svg>
-                </button>
-            </div>
-        </div>
+<body class="font-exo">
+
+  <!-- Header -->
+  <header class="py-6 px-6 md:px-12 border-b-2 border-industrial-gray bg-industrial-bg">
+    <nav class="flex justify-between items-center">
+      <div class="text-2xl font-bold text-industrial-dark font-orbitron">
+        INDUSTRIAL<span class="text-industrial-pink">.STUDIO</span>
+      </div>
+      <ul class="hidden md:flex space-x-8 font-semibold">
+        <li><a href="#home" class="hover:text-industrial-pink transition">Home</a></li>
+        <li><a href="#portfolio" class="hover:text-industrial-pink transition">Work</a></li>
+        <li><a href="#profile" class="hover:text-industrial-pink transition">Profile</a></li>
+        <li><a href="#contact" class="hover:text-industrial-pink transition">Contact</a></li>
+      </ul>
     </nav>
+  </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center relative grid-pattern">
-        <div class="warning-stripe absolute top-0 left-0 w-full h-6"></div>
-        <div class="absolute top-8 left-8 bolt"></div>
-        <div class="absolute top-8 right-8 bolt"></div>
-        <div class="absolute bottom-8 left-8 bolt"></div>
-        <div class="absolute bottom-8 right-8 bolt"></div>
-        
-        <div class="max-w-7xl mx-auto px-6 py-32 w-full">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="animate-slide space-y-6">
-                    <div class="flex items-center space-x-4">
-                        <div class="h-1 w-20 bg-gradient-to-r from-pink-500 to-blue-300"></div>
-                        <p class="text-sm font-bold tracking-widest text-pink-500">PORTFOLIO 2024</p>
-                    </div>
-                    <h1 class="text-6xl md:text-7xl font-black gradient-text leading-tight">
-                        CREATIVE<br/>
-                        INDUSTRIAL<br/>
-                        DESIGN
-                    </h1>
-                    <p class="text-xl text-gray-700 leading-relaxed">
-                        Menggabungkan kekuatan desain industrial dengan sentuhan warna yang segar dan modern. Setiap proyek adalah karya seni yang fungsional.
-                    </p>
-                    <div class="flex space-x-4 pt-6">
-                        <button class="bg-gradient-to-r from-pink-500 to-pink-400 text-white px-8 py-4 font-bold tracking-wider hover:shadow-2xl hover:scale-105 transition glow-pink rounded-lg">
-                            LIHAT PROYEK
-                        </button>
-                        <button class="border-3 border-blue-300 bg-white px-8 py-4 font-bold tracking-wider hover:bg-blue-50 hover:border-blue-400 transition rounded-lg">
-                            HUBUNGI KAMI
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="relative hidden md:block">
-                    <div class="animate-float metal-plate p-12 rounded-2xl shadow-2xl">
-                        <div class="absolute top-4 left-4 bolt"></div>
-                        <div class="absolute top-4 right-4 bolt"></div>
-                        <div class="absolute bottom-4 left-4 bolt"></div>
-                        <div class="absolute bottom-4 right-4 bolt"></div>
-                        <div class="text-center space-y-6">
-                            <div class="text-8xl font-black gradient-text">∞</div>
-                            <p class="text-2xl font-bold text-gray-700">Infinite Creativity</p>
-                            <div class="h-2 w-32 bg-gradient-to-r from-pink-500 via-yellow-300 to-blue-300 mx-auto rounded-full"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <!-- Hero -->
+  <section id="home" class="py-28 px-6 md:px-12 bg-industrial-bg text-center">
+    <h1 class="text-5xl md:text-6xl font-orbitron font-bold text-industrial-dark mb-4">
+      ENGINEERED<br /><span class="text-industrial-pink">FOR YOU</span>
+    </h1>
+    <p class="text-lg text-industrial-gray max-w-2xl mx-auto">
+      Industrial-strength digital experiences — built with logic, tested in reality.
+    </p>
+  </section>
+
+  <!-- Profile Section -->
+  <section id="profile" class="py-20 px-6 md:px-12 bg-white border-t-4 border-b-4 border-industrial-lime">
+    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
+      <!-- Foto Profil -->
+      <div class="flex justify-center">
+        <div class="w-56 h-56 rounded-full overflow-hidden border-4 border-white profile-border">
+          <!-- Ganti src dengan foto Anda -->
+          <div class="bg-industrial-pink w-full h-full flex items-center justify-center text-white text-5xl font-bold">
+            A
+          </div>
         </div>
-    </section>
+      </div>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-24 bg-white relative">
-        <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-pink-500 via-yellow-300 to-blue-300"></div>
-        
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="mb-16 text-center">
-                <div class="flex items-center justify-center space-x-4 mb-4">
-                    <div class="h-1 w-12 bg-pink-500"></div>
-                    <p class="text-sm font-bold tracking-widest text-pink-500">KARYA TERBAIK</p>
-                    <div class="h-1 w-12 bg-blue-300"></div>
-                </div>
-                <h2 class="text-5xl md:text-6xl font-black gradient-text mb-4">PROJECT SHOWCASE</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Koleksi proyek desain industrial dengan sentuhan modern dan penuh warna</p>
+      <!-- Bio & Info -->
+      <div class="md:col-span-2 space-y-6">
+        <h2 class="text-4xl font-orbitron font-bold text-industrial-dark">ALEX RAYNARD</h2>
+        <p class="text-industrial-gray text-lg">
+          Industrial UI/UX Designer & Frontend Engineer with a mechanical engineering background.  
+          I design digital interfaces that feel as solid as steel beams and as precise as CNC machines.
+        </p>
+        <div>
+          <h3 class="font-bold text-industrial-dark mb-2">Core Skills</h3>
+          <div class="space-y-3">
+            <div>
+              <div class="flex justify-between text-sm mb-1">
+                <span>UI/UX for Industrial Systems</span>
+                <span>95%</span>
+              </div>
+              <div class="skill-bar rounded-full">
+                <div class="skill-fill rounded-full w-11/12"></div>
+              </div>
             </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1 -->
-                <div class="project-card bg-gradient-to-br from-pink-100 to-pink-50 border-4 border-pink-300 rounded-2xl overflow-hidden group">
-                    <div class="h-64 bg-gradient-to-br from-pink-400 to-pink-300 flex items-center justify-center relative overflow-hidden">
-                        <div class="absolute inset-0 opacity-10 grid-pattern"></div>
-                        <div class="text-7xl font-black text-white relative z-10 drop-shadow-lg">01</div>
-                        <div class="absolute top-4 left-4 bolt"></div>
-                        <div class="absolute top-4 right-4 bolt"></div>
-                        <div class="absolute bottom-4 left-4 bolt"></div>
-                        <div class="absolute bottom-4 right-4 bolt"></div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-2 text-gray-800">Pink Foundation</h3>
-                        <p class="text-gray-600 mb-4 font-medium">Branding & visual identity design dengan nuansa feminin industrial</p>
-                        <div class="flex items-center text-pink-500 font-bold text-sm">
-                            LIHAT DETAIL <span class="ml-2">→</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 2 -->
-                <div class="project-card bg-gradient-to-br from-blue-100 to-blue-50 border-4 border-blue-300 rounded-2xl overflow-hidden group">
-                    <div class="h-64 bg-gradient-to-br from-blue-400 to-blue-300 flex items-center justify-center relative overflow-hidden">
-                        <div class="absolute inset-0 opacity-10 grid-pattern"></div>
-                        <div class="text-7xl font-black text-white relative z-10 drop-shadow-lg">02</div>
-                        <div class="absolute top-4 left-4 bolt"></div>
-                        <div class="absolute top-4 right-4 bolt"></div>
-                        <div class="absolute bottom-4 left-4 bolt"></div>
-                        <div class="absolute bottom-4 right-4 bolt"></div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-2 text-gray-800">Sky Vision</h3>
-                        <p class="text-gray-600 mb-4 font-medium">Architecture & space planning dengan sentuhan modern minimalis</p>
-                        <div class="flex items-center text-blue-400 font-bold text-sm">
-                            LIHAT DETAIL <span class="ml-2">→</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 3 -->
-                <div class="project-card bg-gradient-to-br from-yellow-100 to-yellow-50 border-4 border-yellow-300 rounded-2xl overflow-hidden group">
-                    <div class="h-64 bg-gradient-to-br from-yellow-300 to-yellow-200 flex items-center justify-center relative overflow-hidden">
-                        <div class="absolute inset-0 opacity-10 grid-pattern"></div>
-                        <div class="text-7xl font-black text-white relative z-10 drop-shadow-lg">03</div>
-                        <div class="absolute top-4 left-4 bolt"></div>
-                        <div class="absolute top-4 right-4 bolt"></div>
-                        <div class="absolute bottom-4 left-4 bolt"></div>
-                        <div class="absolute bottom-4 right-4 bolt"></div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-2 text-gray-800">Sunshine Craft</h3>
-                        <p class="text-gray-600 mb-4 font-medium">Product & industrial design dengan energi positif dan ceria</p>
-                        <div class="flex items-center text-yellow-600 font-bold text-sm">
-                            LIHAT DETAIL <span class="ml-2">→</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 4 -->
-                <div class="project-card bg-gradient-to-br from-pink-100 to-yellow-50 border-4 border-pink-300 rounded-2xl overflow-hidden group">
-                    <div class="h-64 bg-gradient-to-br from-pink-400 to-yellow-300 flex items-center justify-center relative overflow-hidden">
-                        <div class="absolute inset-0 opacity-10 grid-pattern"></div>
-                        <div class="text-7xl font-black text-white relative z-10 drop-shadow-lg">04</div>
-                        <div class="absolute top-4 left-4 bolt"></div>
-                        <div class="absolute top-4 right-4 bolt"></div>
-                        <div class="absolute bottom-4 left-4 bolt"></div>
-                        <div class="absolute bottom-4 right-4 bolt"></div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-2 text-gray-800">Gradient Studio</h3>
-                        <p class="text-gray-600 mb-4 font-medium">UI/UX design dengan perpaduan warna yang harmonis</p>
-                        <div class="flex items-center text-pink-500 font-bold text-sm">
-                            LIHAT DETAIL <span class="ml-2">→</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 5 -->
-                <div class="project-card bg-gradient-to-br from-blue-100 to-pink-50 border-4 border-blue-300 rounded-2xl overflow-hidden group">
-                    <div class="h-64 bg-gradient-to-br from-blue-400 to-pink-300 flex items-center justify-center relative overflow-hidden">
-                        <div class="absolute inset-0 opacity-10 grid-pattern"></div>
-                        <div class="text-7xl font-black text-white relative z-10 drop-shadow-lg">05</div>
-                        <div class="absolute top-4 left-4 bolt"></div>
-                        <div class="absolute top-4 right-4 bolt"></div>
-                        <div class="absolute bottom-4 left-4 bolt"></div>
-                        <div class="absolute bottom-4 right-4 bolt"></div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-2 text-gray-800">Dream Factory</h3>
-                        <p class="text-gray-600 mb-4 font-medium">Packaging design dengan konsep playful dan eye-catching</p>
-                        <div class="flex items-center text-blue-400 font-bold text-sm">
-                            LIHAT DETAIL <span class="ml-2">→</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 6 -->
-                <div class="project-card bg-gradient-to-br from-yellow-100 to-blue-50 border-4 border-yellow-300 rounded-2xl overflow-hidden group">
-                    <div class="h-64 bg-gradient-to-br from-yellow-300 to-blue-300 flex items-center justify-center relative overflow-hidden">
-                        <div class="absolute inset-0 opacity-10 grid-pattern"></div>
-                        <div class="text-7xl font-black text-white relative z-10 drop-shadow-lg">06</div>
-                        <div class="absolute top-4 left-4 bolt"></div>
-                        <div class="absolute top-4 right-4 bolt"></div>
-                        <div class="absolute bottom-4 left-4 bolt"></div>
-                        <div class="absolute bottom-4 right-4 bolt"></div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-2 text-gray-800">Rainbow Works</h3>
-                        <p class="text-gray-600 mb-4 font-medium">Motion graphics & animation dengan visual yang dinamis</p>
-                        <div class="flex items-center text-yellow-600 font-bold text-sm">
-                            LIHAT DETAIL <span class="ml-2">→</span>
-                        </div>
-                    </div>
-                </div>
+            <div>
+              <div class="flex justify-between text-sm mb-1">
+                <span>Frontend Engineering</span>
+                <span>90%</span>
+              </div>
+              <div class="skill-bar rounded-full">
+                <div class="skill-fill rounded-full w-5/6"></div>
+              </div>
             </div>
+            <div>
+              <div class="flex justify-between text-sm mb-1">
+                <span>AR for Maintenance UI</span>
+                <span>80%</span>
+              </div>
+              <div class="skill-bar rounded-full">
+                <div class="skill-fill rounded-full w-4/5" style="background-color: #EDF0AE;"></div>
+              </div>
+            </div>
+          </div>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-24 bg-gradient-to-br from-pink-50 via-yellow-50 to-blue-50 relative grid-pattern">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                <div class="relative order-2 md:order-1">
-                    <div class="metal-plate p-12 rounded-2xl shadow-2xl relative">
-                        <div class="absolute top-6 left-6 bolt"></div>
-                        <div class="absolute top-6 right-6 bolt"></div>
-                        <div class="absolute bottom-6 left-6 bolt"></div>
-                        <div class="absolute bottom-6 right-6 bolt"></div>
-                        <div class="space-y-10">
-                            <div class="text-center">
-                                <div class="text-6xl font-black gradient-text mb-3">150+</div>
-                                <p class="text-gray-700 font-bold text-lg">Projects Completed</p>
-                                <div class="h-1 w-24 bg-gradient-to-r from-pink-500 to-yellow-300 mx-auto mt-2 rounded-full"></div>
-                            </div>
-                            <div class="text-center">
-                                <div class="text-6xl font-black gradient-text mb-3">80+</div>
-                                <p class="text-gray-700 font-bold text-lg">Happy Clients</p>
-                                <div class="h-1 w-24 bg-gradient-to-r from-yellow-300 to-blue-300 mx-auto mt-2 rounded-full"></div>
-                            </div>
-                            <div class="text-center">
-                                <div class="text-6xl font-black gradient-text mb-3">12+</div>
-                                <p class="text-gray-700 font-bold text-lg">Years Experience</p>
-                                <div class="h-1 w-24 bg-gradient-to-r from-blue-300 to-pink-500 mx-auto mt-2 rounded-full"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="order-1 md:order-2">
-                    <div class="flex items-center space-x-4 mb-6">
-                        <div class="h-1 w-16 bg-gradient-to-r from-pink-500 to-blue-300"></div>
-                        <p class="text-sm font-bold tracking-widest text-pink-500">TENTANG KAMI</p>
-                    </div>
-                    <h2 class="text-5xl md:text-6xl font-black gradient-text mb-8 leading-tight">WHO WE ARE</h2>
-                    <p class="text-gray-700 text-lg leading-relaxed mb-6 font-medium">
-                        Kami adalah studio desain industrial yang berani menggabungkan kekuatan estetika industrial dengan palet warna yang segar dan modern. Setiap proyek adalah hasil dari dedikasi, kreativitas, dan passion untuk menciptakan sesuatu yang unik.
-                    </p>
-                    <p class="text-gray-700 text-lg leading-relaxed mb-8 font-medium">
-                        Dengan pengalaman lebih dari 12 tahun di industri kreatif, kami siap mewujudkan visi Anda menjadi realitas yang penuh warna dan impactful.
-                    </p>
-                    <div class="flex space-x-3">
-                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-pink-500 to-pink-400 flex items-center justify-center text-white font-black shadow-lg">
-                            ✓
-                        </div>
-                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-300 flex items-center justify-center text-white font-black shadow-lg">
-                            ✓
-                        </div>
-                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-blue-300 flex items-center justify-center text-white font-black shadow-lg">
-                            ✓
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="flex space-x-4 mt-4">
+          <a href="#" class="text-industrial-dark hover:text-industrial-pink transition">LinkedIn</a>
+          <a href="#" class="text-industrial-dark hover:text-industrial-pink transition">GitHub</a>
+          <a href="#" class="text-industrial-dark hover:text-industrial-pink transition">Behance</a>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-24 bg-white relative">
-        <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-pink-500 via-yellow-300 to-blue-300"></div>
-        <div class="absolute bottom-0 left-0 w-full h-6 warning-stripe"></div>
-        
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <div class="flex items-center justify-center space-x-4 mb-6">
-                <div class="h-1 w-16 bg-pink-500"></div>
-                <p class="text-sm font-bold tracking-widest text-pink-500">HUBUNGI KAMI</p>
-                <div class="h-1 w-16 bg-blue-300"></div>
-            </div>
-            <h2 class="text-5xl md:text-6xl font-black gradient-text mb-8 leading-tight">LET'S CREATE<br/>SOMETHING AMAZING</h2>
-            <p class="text-gray-700 text-xl mb-12 max-w-2xl mx-auto font-medium leading-relaxed">
-                Punya proyek impian dalam pikiran? Mari diskusikan bagaimana kami bisa membantu mewujudkannya dengan sentuhan desain yang unik dan penuh warna!
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <button class="bg-gradient-to-r from-pink-500 to-pink-400 text-white px-12 py-5 font-bold text-lg tracking-wider hover:shadow-2xl hover:scale-105 transition glow-pink rounded-lg">
-                    MULAI PROJECT
-                </button>
-                <button class="bg-gradient-to-r from-blue-400 to-blue-300 text-white px-12 py-5 font-bold text-lg tracking-wider hover:shadow-2xl hover:scale-105 transition glow-blue rounded-lg">
-                    LIHAT PORTFOLIO
-                </button>
-            </div>
-        </div>
-    </section>
+  <!-- Portfolio (Mini) -->
+  <section id="portfolio" class="py-20 px-6 md:px-12 bg-industrial-bg">
+    <h2 class="text-3xl font-orbitron text-center text-industrial-dark mb-12">FEATURED PROJECTS</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      <div class="border border-industrial-gray p-5 hover:border-industrial-pink transition">
+        <h3 class="font-bold text-industrial-dark">SteelWorks Control Panel</h3>
+        <p class="text-industrial-gray text-sm mt-2">Dashboard real-time untuk pabrik baja.</p>
+      </div>
+      <div class="border border-industrial-gray p-5 hover:border-industrial-pink transition">
+        <h3 class="font-bold text-industrial-dark">GearLogic AR Manual</h3>
+        <p class="text-industrial-gray text-sm mt-2">Panduan perbaikan mesin via augmented reality.</p>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="bg-gradient-to-br from-gray-900 to-gray-800 py-16 border-t-8 border-pink-500">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-12 mb-12">
-                <div>
-                    <div class="flex items-center space-x-3 mb-6">
-                        <div class="bolt"></div>
-                        <h3 class="text-xl font-black gradient-text">INDUSTRIAL</h3>
-                    </div>
-                    <p class="text-gray-400 text-sm leading-relaxed">Crafting colorful excellence since 2012</p>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-6 text-pink-400 text-lg">NAVIGASI</h4>
-                    <div class="space-y-3 text-sm">
-                        <div><a href="#home" class="text-gray-400 hover:text-pink-400 transition">Home</a></div>
-                        <div><a href="#projects" class="text-gray-400 hover:text-pink-400 transition">Projects</a></div>
-                        <div><a href="#about" class="text-gray-400 hover:text-pink-400 transition">About</a></div>
-                        <div><a href="#contact" class="text-gray-400 hover:text-pink-400 transition">Contact</a></div>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-6 text-blue-400 text-lg">LAYANAN</h4>
-                    <div class="space-y-3 text-sm">
-                        <div><a href="#" class="text-gray-400 hover:text-blue-400 transition">Branding</a></div>
-                        <div><a href="#" class="text-gray-400 hover:text-blue-400 transition">Web Design</a></div>
-                        <div><a href="#" class="text-gray-400 hover:text-blue-400 transition">Product Design</a></div>
-                        <div><a href="#" class="text-gray-400 hover:text-blue-400 transition">Consultation</a></div>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-6 text-yellow-400 text-lg">SOCIAL MEDIA</h4>
-                    <div class="space-y-3 text-sm">
-                        <div><a href="#" class="text-gray-400 hover:text-yellow-400 transition">Instagram</a></div>
-                        <div><a href="#" class="text-gray-400 hover:text-yellow-400 transition">Behance</a></div>
-                        <div><a href="#" class="text-gray-400 hover:text-yellow-400 transition">Dribbble</a></div>
-                        <div><a href="#" class="text-gray-400 hover:text-yellow-400 transition">LinkedIn</a></div>
-                    </div>
-                </div> 
-            </div>
-            <div class="border-t border-gray-700 pt-8">
-                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-                    <p class="text-gray-500 text-sm">&copy; 2024 INDUSTRIAL DESIGN STUDIO. ALL RIGHTS RESERVED.</p>
-                    <div class="flex space-x-2">
-                        <div class="w-3 h-3 rounded-full bg-pink-500"></div>
-                        <div class="w-3 h-3 rounded-full bg-yellow-300"></div>
-                        <div class="w-3 h-3 rounded-full bg-blue-300"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+  <!-- Footer / Contact -->
+  <footer id="contact" class="py-12 px-6 bg-industrial-dark text-white text-center">
+    <p class="mb-2">Let’s build something that lasts.</p>
+    <p class="font-mono text-industrial-pink">
+      <a href="mailto:hello@industrial.studio" class="hover:underline">hello@industrial.studio</a>
+    </p>
+    <p class="mt-6 text-sm opacity-70">© 2026 Industrial.Studio</p>
+  </footer>
 
-    <script>
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth
+</body>
+</html>
